@@ -33,9 +33,6 @@ function [newBlobs]=removeSmallBlobs(blobs,bdryArr,cols)
             end
        end
        if flag == 0
-            if(left==502)
-               disp('pass');
-           end
            newBlobs.push(temp);
        end
     end

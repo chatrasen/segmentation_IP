@@ -1,4 +1,4 @@
-img = imread('audio_mystery776.JPG');
+img = imread('images/audio_star.JPG');
 imgHSV = rgb2hsv(img);
 
 rows = size(img,1);
@@ -9,9 +9,9 @@ segImg = zeros(rows,cols,3);
 for i=1:rows
    for j=1:cols
       if imgHSV(i,j,1) > 0.1 && imgHSV(i,j,1) < 0.15
-%       if imgHSV(i,j,1) < 0.14 
          segImg(i,j,1) = 255;
-%       elseif imgHSV(i,j,1) < 0.20
+%% Used for magnetometer
+%       elseif imgHSV(i,j,1) < 0.20  
 %            segImg(i,j,2) = 255;  
 %       elseif imgHSV(i,j,1) < 0.4
 %            segImg(i,j,3) = 255;     
@@ -21,18 +21,15 @@ end
 figure;
 imshow(segImg);
  blobs = blobDetect(segImg,1);
-%  
 [redBdry,blobs,bdryArr] = getBlobBdries(blobs,cols);
- disp(bdryArr);
  blobs = removeSmallBlobs(blobs,bdryArr,cols);
-% %  display(redBdry);
-% 
  figure;
  blobs = displayBlobs(blobs,segImg,1);
-%   
+%   blobs = blobDetect(segImg,1);
+% [redBdry,blobs,bdryArr] = getBlobBdries(blobs,cols); 
 %  blobs = blobDetect(segImg,2);
 %  [blobs, redBdry] = removeGreenOverRed(redBdry,blobs,rows,cols); 
-%  [greenBdry,blobs] = getBlobBdries(blobs,cols);
+%  [greenBdry,blobs,bdryArr] = getBlobBdries(blobs,cols);
 % %  display(redBdry);
 %  figure;
 %  blobs = displayBlobs(blobs,segImg,2);
