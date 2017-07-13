@@ -29,7 +29,7 @@ function [copy,newRedBdry] = removeGreenOverRed(redBdry, blobs, rows, cols)
        end       
        copy.push(temp);         
     end
-    copy = blobDetect(newImg,2);
+    copy = blobDetect(newImg,2,2);
     disp(redBdry.size());
     newRedBdry = redBdry;
 end

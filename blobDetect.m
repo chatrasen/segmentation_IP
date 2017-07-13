@@ -1,14 +1,15 @@
-function [blobs] = blobDetect(img,color)
+function [blobs] = blobDetect(img,color,mode)
 %% INITIALIZATION
    rows = size(img,1);
    cols = size(img,2); 
    blobs = CQueue; % will contatin all the blobs
    visited = zeros(rows,cols);
-%    cnt=1;
    q = CQueue;
-   blobQ = CQueue; %Will contain one blob
-   pixThresh = 750;
-   
+   if(mode==2)
+       pixThresh = 2000;
+   else
+       pixThresh = 250;
+   end
   %% BFS CODE
    for i=1:rows
       for j=1:cols
@@ -35,8 +36,7 @@ function [blobs] = blobDetect(img,color)
             end
             
             if(blobQ.size()>pixThresh)
-                blobs.push(blobQ);  
-                disp(blobQ.size());
+                blobs.push(blobQ); 
             end
 %             blobQ.empty(); This acts as a pointer and empties the pushed
 %             queue. So dont use this. Create a new object at the top each
