@@ -1,0 +1,21 @@
+function [newBlobs]=removeSmallBlobs(blobs,bdryArr)
+    newBlobs = CQueue;    
+    while ~blobs.isempty()
+       curBlob = blobs.front();
+       temp = CQueue;
+       blobs.pop();
+       left = cols+1;
+       right = 0;       
+       while(~curBlob.isempty())           
+           curr = curBlob.front();
+           temp.push(curr);
+           curBlob.pop();
+           left = min(left,curr(2));
+           right = max(right,curr(2));
+       end
+       flag = false;
+       for i=1:length(bdryArr)
+            if (left >= bdryArr(i,1) && left <= bdryArr(i,2))
+       end
+    end
+end
